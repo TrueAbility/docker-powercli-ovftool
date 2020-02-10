@@ -23,7 +23,7 @@ RUN apt-get update \
     && echo "/bin/pwsh" >> /etc/shells \
     && pwsh -c "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted" \
     && pwsh -c "\$ProgressPreference = \"SilentlyContinue\"; Install-Module VMware.PowerCLI,PowerNSX" \
-    && pwsh -c "Set-PowerCLIConfiguration -DefaultVIServerMode Single -InvalidCertificateAction Ignore -Confirm:\$false" \
+    && pwsh -c "Set-PowerCLIConfiguration -Scope AllUsers -DefaultVIServerMode Single -InvalidCertificateAction Ignore -ParticipateInCEIP \$false -Confirm:\$false" \
     && chmod +x ovftool.bundle \
     && /root/ovftool.bundle --eulas-agreed --required \
     && apt-get -qy autoremove \
